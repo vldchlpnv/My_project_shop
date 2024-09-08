@@ -5,6 +5,9 @@ class Category(models.Model):
 
     type_of_instruments = models.CharField(max_length=100)    # тип инструмента
 
+    def __str__(self):
+        return self.type_of_instruments
+
 class InstrumentsCatalog(models.Model):
 
     title = models.CharField(max_length=100)    # фирма производитель
@@ -14,6 +17,9 @@ class InstrumentsCatalog(models.Model):
     quantity = models.IntegerField()    # количство
     price = models.IntegerField()    # цена
     type_of_instruments = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)  # тип инструмента
+
+    def __str__(self):
+        return self.title
 
 
 

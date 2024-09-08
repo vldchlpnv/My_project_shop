@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+
+<body>
+<table align="right" width="40%">
+    <tr>
+        <th>Мои заказы</th>
+        <th>Доставка</th>
+        <th>Избранное</th>
+        <th>Отзывы</th>
+        <th><a href="about/">О нас</a></th>
+        <th>Контакты</th>
+    </tr>
+</table>
+
+    <br>
+    <br>
+<table align="center" width="60%" height="300">
+
+
+
+    <tr>
+        {% for i in category %}
+        <th><a href="{% url 'main:details' i.id %}">{{i.type_of_instruments}}</a></th>
+        {% endfor %}
+    </tr>
+
+
+</table>
+    </br>
+    </br>
+
+</body>
+</html>
