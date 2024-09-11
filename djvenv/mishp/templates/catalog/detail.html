@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>{{guitar}}</h1>
+
+{% for i in inst_cat %}
+
+    <br><br>Фирма производитель: {{i.title}}
+
+    <br><br>Модель:{{i.model}}
+    <br><br>Наличие:{{i.availability}}
+    <br><br>Количество:{{i.quantity}}
+    <br><br>Цена:{{i.price}}
+    <br><br><button>-</button><button> Добавить в корзину </button><button>+</button> <!---кнопка для будущего добавления в корзину--->
+
+{% endfor %}
+
+
+</body>
+</html>

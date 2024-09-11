@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <title>Главная страница</title>
 </head>
-
 <body>
-<table align="right" width="40%">
-    <tr>
-        <th>Мои заказы</th>
-        <th>Доставка</th>
-        <th>Избранное</th>
-        <th>Отзывы</th>
-        <th><a href="about/">О нас</a></th>
-        <th>Контакты</th>
-    </tr>
-</table>
 
+<div  id="navigation">
+        <a href="">Корзина</a>
+        <a href="">Мои заказы</a>
+        <a href="">Избранное</a>
+        <a href =''>Доставка</a>
+        <a href="about/">О компании</a>
+</div>
+
+</table>
     <br>
     <br>
 <table align="center" width="60%" height="300">
-
-
-
     <tr>
         {% for i in category %}
-        <th><a href="{% url 'main:details' i.id %}">{{i.type_of_instruments}}</a></th>
+        <th><a href="{% url 'catalog:details' i.id %}">{{i.type_of_instruments}}</a></th>
         {% endfor %}
     </tr>
-
-
 </table>
     </br>
     </br>

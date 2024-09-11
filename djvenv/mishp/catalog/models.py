@@ -4,6 +4,7 @@ from django.db import models
 class Category(models.Model):
 
     type_of_instruments = models.CharField(max_length=100)    # тип инструмента
+    slug = models.SlugField(null=True)
 
     def __str__(self):
         return self.type_of_instruments
