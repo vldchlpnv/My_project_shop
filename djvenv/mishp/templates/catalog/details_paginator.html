@@ -1,0 +1,8 @@
+
+{% if page.has_previous %} <!-- если есть предыдущая страница, то показываем её кнопку -->
+   <a href="?page={{ page.previous_page_number }}"> <button> < </button> </a> <!-- возвращает номер предыдущей страницы -->
+{% endif %}
+   Страница {{ page.number }} из {{ page.paginator.num_pages }}. <!-- текст описание -->
+{% if page.has_next %} <!-- если есть следующая страница, то показываем её кнопку -->
+<a href="?page={{ page.next_page_number }}"> <button> > </button> <button> Показать еще </button></a> <!-- возвращает номер следующей страницы -->
+{% endif %}
