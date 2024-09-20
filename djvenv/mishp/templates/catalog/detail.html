@@ -7,28 +7,13 @@
 </head>
 <body>
 
-<p> <a name="В начало"></a> </p>
+{% for i in req_2 %}
+    {{i.title}}
+    {{i.price}}
 
-<header><h1>{{head_of_page}}</h1></header>
-
-<p>{% include "catalog/details_paginator.html" with page=instruments_pages %}<p/>
-
-{% for i in instruments_pages %}
-
-    <br><br>Фирма производитель: {{i.title}}
-    <br><br>Модель:{{i.model}}
-    <br><br>Наличие:{{i.availability}}
-    <br><br>Количество:{{i.quantity}}
-    <br><br>Цена:{{i.price}}
-
-    <br><br><button>-</button><button> Добавить в корзину </button><button>+</button> <!---кнопка для будущего добавления в корзину--->
 {% endfor %}
 
 
-<p><a href="#В начало">В начало</a></p>
-
-
-<p>{% include "catalog/details_paginator.html" with page=instruments_pages %}<p/>
 
 </body>
 </html>
