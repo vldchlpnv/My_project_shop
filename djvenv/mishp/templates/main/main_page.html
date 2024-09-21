@@ -20,7 +20,7 @@
 <table align="center" width="60%" height="300">
     <tr>
         {% for i in category %}
-        <th><a href="{% url 'catalog:details_of_category' i.id %}">{{i.type_of_instruments}}</a></th>
+        <th><a href="{% url 'catalog:details_of_category' i.slug %}">{{i.type_of_instruments}}</a></th>
         {% endfor %}
     </tr>
 </table>

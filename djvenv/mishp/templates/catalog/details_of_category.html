@@ -9,7 +9,7 @@
 <ul>
     {% for i in type_of_instr_in_category %}
     <li>
-        <a href="{% url 'catalog:details' i.id %}">{{i.goods}}</a>
+        <a href="{% url 'catalog:details' i.slug %}">{{i.goods}}</a>
     </li>
     {% endfor %}
 </ul>
