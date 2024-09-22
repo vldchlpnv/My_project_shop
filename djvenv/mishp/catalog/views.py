@@ -16,11 +16,16 @@ def details_of_category(request, slug):
 
 def details(request, slug):
     '''описывает витрину с инструментами в каталоге'''
-    #goods_in_category = InstrumentsCatalog.objects.filter(type_of_goods_id=id)
+
+    #Сюда нужно будет добавить загловки с названиями по категориям!!!
+
     goods_in_category_1 = ShowcaseOfInstrumentst.objects.get(slug=slug)
     goods_in_category = goods_in_category_1.instrumentscatalog_set.all()
-    return render(request, 'catalog/detail.html', {'goods_in_category':goods_in_category})
 
-#запрос:
-#c = ShowcaseOfInstrumentst.objects.get(slug='amplifier-head')
-#c_1 = c.instrumentscatalog_set.all()
+    paginator = Paginator(goods_in_category, 5) # постраничная разбивка, пока разбиваем по 5 + добавить обработку исключений
+    page_number = request.GET.get('page', 1)
+    instruments_pages = paginator.page(page_number)
+
+
+    return render(request, 'catalog/detail.html', {'goods_in_category':goods_in_category, 'instruments_pages':instruments_pages})
+

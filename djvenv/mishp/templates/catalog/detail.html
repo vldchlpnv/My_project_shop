@@ -7,11 +7,24 @@
 </head>
 <body>
 
-{% for i in goods_in_category %}
-    {{i.title}}
-    {{i.price}}
+<p> <a name="В начало"></a> </p>
+
+{% for i in type_of_instr_in_category %}
+    {{i.goods}}
 {% endfor %}
 
+{% for i in instruments_pages %}
+    <br><br>Фирма производитель: {{i.title}}
+    <br><br>Модель:{{i.model}}
+    <br><br>Наличие:{{i.availability}}
+    <br><br>Количество:{{i.quantity}}
+    <br><br>Цена:{{i.price}}
+    <br><br><button>-</button><button> Добавить в корзину </button><button>+</button> <!---кнопка для будущего добавления в корзину--->
+{% endfor %}
+
+<p>{% include "catalog/details_paginator.html" with page=instruments_pages %}<p/>
+
+<p><a href="#В начало">В начало</a></p>
 
 
 </body>

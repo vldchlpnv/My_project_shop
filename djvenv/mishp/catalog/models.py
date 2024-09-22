@@ -41,7 +41,7 @@ class InstrumentsCatalog(models.Model):
     def __str__(self):
         return self.title
 
-
+# Добавить индексацию
 
 
 
