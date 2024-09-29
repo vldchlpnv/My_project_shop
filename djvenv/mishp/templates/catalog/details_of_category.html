@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,12 @@
     <title>Детали категорий</title>
 </head>
 <body>
-<header><h1>{{head_of_page}}</h1></header>
+
+<header>{% for i in head_of_category %}
+    <h1>{{i.type_of_instruments}}</h1>
+{% endfor %}
+</header>
+
 <ul>
     {% for i in type_of_instr_in_category %}
     <li>

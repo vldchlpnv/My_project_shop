@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,10 @@
 
 <p> <a name="В начало"></a> </p>
 
-{% for i in type_of_instr_in_category %}
-    {{i.goods}}
+<header>{% for i in head_of_showcase %}
+    <h1>{{i.goods}}</h1>
 {% endfor %}
+</header>
 
 {% for i in instruments_pages %}
     <br><br>Фирма производитель: {{i.title}}
@@ -25,6 +27,7 @@
 <p>{% include "catalog/details_paginator.html" with page=instruments_pages %}<p/>
 
 <p><a href="#В начало">В начало</a></p>
+
 
 
 </body>

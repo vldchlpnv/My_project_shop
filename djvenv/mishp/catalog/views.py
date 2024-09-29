@@ -7,18 +7,18 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def details_of_category(request, slug):
     '''вернет типы типы инструментов бас,
      электро, акустика и тд'''
-
+    head_of_category = Category.objects.filter(slug=slug) # запрос для создания заголовка для раздела
     category_of_instr = get_object_or_404(Category, slug=slug) # этим запросом получим категорию инструменов ударные гитары клавиши или прочее,
     # заменил на функцию сокращенного доступа
     type_of_instr_in_category = category_of_instr.showcaseofinstrumentst_set.filter(type_of_instruments_showcase_id=category_of_instr) # типы инструментов в категории бас, акустика, электро и тд
 
-    return render(request, 'catalog/details_of_category.html', {'type_of_instr_in_category':type_of_instr_in_category})
+    return render(request, 'catalog/details_of_category.html', {'type_of_instr_in_category':type_of_instr_in_category, 'head_of_category':head_of_category})
 
 
 def details(request, slug):
     '''описывает витрину с инструментами в каталоге'''
 
-    #Сюда нужно будет добавить загловки с названиями по категориям!!!
+    head_of_showcase = ShowcaseOfInstrumentst.objects.filter(slug=slug)
     goods_in_category_1 = get_object_or_404(ShowcaseOfInstrumentst, slug=slug)
     goods_in_category = goods_in_category_1.instrumentscatalog_set.all()
 
@@ -29,7 +29,6 @@ def details(request, slug):
     except (EmptyPage, PageNotAnInteger):
         instruments_pages = paginator.page(paginator.num_pages)
 
-
-    return render(request, 'catalog/detail.html', {'goods_in_category':goods_in_category, 'instruments_pages':instruments_pages})
+    return render(request, 'catalog/detail.html', {'goods_in_category':goods_in_category, 'instruments_pages':instruments_pages, 'head_of_showcase':head_of_showcase})
 
 
