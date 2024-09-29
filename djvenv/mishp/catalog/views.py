@@ -7,19 +7,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def details_of_category(request, slug):
     '''вернет типы типы инструментов бас,
      электро, акустика и тд'''
-    head_of_category = Category.objects.filter(slug=slug) # запрос для создания заголовка для раздела
-    category_of_instr = get_object_or_404(Category, slug=slug) # этим запросом получим категорию инструменов ударные гитары клавиши или прочее,
-    # заменил на функцию сокращенного доступа
+
+    category_of_instr = get_object_or_404(Category, slug=slug) # этим запросом получим категорию инструменов ударные гитары клавиши или прочее, в том числе
+    # это будет загловок для шаблона detail_of_category
+
     type_of_instr_in_category = category_of_instr.showcaseofinstrumentst_set.filter(type_of_instruments_showcase_id=category_of_instr) # типы инструментов в категории бас, акустика, электро и тд
 
-    return render(request, 'catalog/details_of_category.html', {'type_of_instr_in_category':type_of_instr_in_category, 'head_of_category':head_of_category})
+    return render(request, 'catalog/details_of_category.html', {'type_of_instr_in_category':type_of_instr_in_category, 'category_of_instr':category_of_instr})
 
 
 def details(request, slug):
     '''описывает витрину с инструментами в каталоге'''
 
-    head_of_showcase = ShowcaseOfInstrumentst.objects.filter(slug=slug)
-    goods_in_category_1 = get_object_or_404(ShowcaseOfInstrumentst, slug=slug)
+    goods_in_category_1 = get_object_or_404(ShowcaseOfInstrumentst, slug=slug) # запрос для заголовка шаюлона detail
     goods_in_category = goods_in_category_1.instrumentscatalog_set.all()
 
     paginator = Paginator(goods_in_category, 5) # постраничная разбивка, пока разбиваем по 5 + добавить обработку исключений
@@ -29,6 +29,6 @@ def details(request, slug):
     except (EmptyPage, PageNotAnInteger):
         instruments_pages = paginator.page(paginator.num_pages)
 
-    return render(request, 'catalog/detail.html', {'goods_in_category':goods_in_category, 'instruments_pages':instruments_pages, 'head_of_showcase':head_of_showcase})
+    return render(request, 'catalog/detail.html', {'goods_in_category':goods_in_category, 'instruments_pages':instruments_pages, 'goods_in_category_1':goods_in_category_1})
 
 
