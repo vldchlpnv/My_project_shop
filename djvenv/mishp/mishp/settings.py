@@ -124,3 +124,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'    # с добавлением это строки после авторизции в форме логина нас будет перекидывать на новую домашнюю страницу
+                            # если проверить и зайти в админку то там уже вход выполнен
+LOGOUT_REDIRECT_URL = "/"   # редирект для выхода из лк

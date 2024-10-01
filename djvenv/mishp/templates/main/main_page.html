@@ -11,9 +11,22 @@
         <a href="">Мои заказы</a>
         <a href="">Избранное</a>
         <a href =''>Доставка</a>
-        <a href="about/">О компании</a>
+        <a href="{% url 'main:about' %}">О компании</a>
+
+    {% if user.is_authenticated %}
+    Привет {{ user.username }}!
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <a href="#" onclick="parentNode.submit();">Выход</a>
+    </form>
+    {% else %}
+        <p>Вы не авторизованы</p>
+        <a href="accounts/login/"> Вход в личный кабинет</a>
+    {% endif %}
+
 </div>
 
+<br>
 </table>
     <br>
     <br>
@@ -24,9 +37,9 @@
         {% endfor %}
     </tr>
 </table>
-    </br>
-    </br>
 
+    </br>
+    </br>
 
 </body>
 </html>
