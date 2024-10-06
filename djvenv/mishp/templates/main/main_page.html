@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +21,10 @@
         <a href="#" onclick="parentNode.submit();">Выход</a>
     </form>
     {% else %}
-        <p>Вы не авторизованы</p>
-        <a href="accounts/login/"> Вход в личный кабинет</a>
+        <p>Вы не авторизованы <a href="{% url 'login' %}"> Вход в личный кабинет</a> </p>
+        <p> Забыли пароль? <a href="{% url 'password_reset' %}">Восстановить</a> </p>
+        <p>Нет аккаунта? <a href="{% url 'ViewForRegistration' %}"> Регистрация </a> </p>
+
     {% endif %}
 
 </div>

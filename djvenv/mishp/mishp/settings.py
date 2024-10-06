@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
-    'main.apps.MainConfig'
+    'main.apps.MainConfig',
+    'accounts.apps.AccountsConfig'
 
 ]
 
@@ -125,6 +126,20 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/'    # с добавлением это строки после авторизции в форме логина нас будет перекидывать на новую домашнюю страницу
+LOGIN_REDIRECT_URL = '/'    # с добавлением это строки после авторизции в форме логина нас будет перекидывать на домашнюю страницу
                             # если проверить и зайти в админку то там уже вход выполнен
-LOGOUT_REDIRECT_URL = "/"   # редирект для выхода из лк
+LOGOUT_REDIRECT_URL = '/'   # редирект для выхода из лк и снова на главную в теории можно добавить редирект на новый шаблон
+                            # с информацией об успешном входе/выходе и предложением пройти главную
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Конфигурация сервера электронной почты
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'chulpanov.vlad@yandex.ru'
+EMAIL_HOST_PASSWORD = 'rnlreqqamoypgesw'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
