@@ -3,7 +3,10 @@
         {{ form.as_p }}
         {% csrf_token %}
         <p><input type="submit" value="Login"></p>
+
     </form>
+ <p><a class="color-h-f" href="{% url 'ViewForRegistration' %}"> Регистрация </a></p>
+ <p><a class="color-h-f" href="{% url 'password_reset' %}">Восстановить пароль</a></p>
 
 
 <!--- пока держу в таком виде шаблон просто пробник потом добавлю что нибудь из функционала!>
