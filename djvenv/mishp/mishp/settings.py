@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import rest_framework.permissions
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -39,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
     'main.apps.MainConfig',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'rest_framework',
+    'test_api.apps.TestApiConfig'
 
 ]
 
@@ -119,10 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = 'images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Убедитесь, что путь к вашей папке со статическими файлами указан правильно
+]
 
 
 
@@ -139,8 +143,8 @@ LOGOUT_REDIRECT_URL = '/'   # редирект для выхода из лк и 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Конфигурация сервера электронной почты
 EMAIL_HOST = 'smtp.yandex.ru'
-#EMAIL_HOST_USER =
-#EMAIL_HOST_PASSWORD =
+EMAIL_HOST_USER = 'chulpanov.vlad@yandex.ru'
+EMAIL_HOST_PASSWORD = 'rnlreqqamoypgesw'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
@@ -149,3 +153,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 # Тестовая запись для git
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
