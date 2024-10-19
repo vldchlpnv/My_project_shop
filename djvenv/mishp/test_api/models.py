@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from mishp.catalog.models import InstrumentsCatalog
+from catalog.models import InstrumentsCatalog
 
 class Products(models.Model):
     name = models.CharField(max_length=150)     # сюда подавать слаг из модели инструментов
@@ -12,7 +12,7 @@ class Products(models.Model):
 
 class CartItems(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(InstrumentsCatalog, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     class Meta:
