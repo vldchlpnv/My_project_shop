@@ -1,15 +1,17 @@
 from rest_framework import serializers
-from .models import Products, CartItems
+from .models import CartItems
+from catalog.models import InstrumentsCatalog # туту было исправление
 
-class ProductsSerializer(serializers.ModelSerializer):
+class InstrumentsCatalogSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = '__all__'
-        model = Products
+        fields = ('id', 'slug', 'price', 'availability')
+        model = InstrumentsCatalog
+
 
 class CartItemsSerializer(serializers.ModelSerializer):
-    product = ProductsSerializer()  # вот это будет вложенный сериализатор, что-то вроде такой записи получится
-    # {"id": 1,"product": {"id": 2, "name": "Продукт 1","price": 100}, "quantity": 3}
+    instruments_catalog = serializers.PrimaryKeyRelatedField(queryset=InstrumentsCatalog.objects.all())
+
     class Meta:
-        fields = ('id', 'quantity')
+        fields = ('id', 'quantity', 'instruments_catalog')
         model = CartItems
         

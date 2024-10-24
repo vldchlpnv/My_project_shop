@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'accounts.apps.AccountsConfig',
     'rest_framework',
-    'test_api.apps.TestApiConfig'
+    'test_api.apps.TestApiConfig',
+    'cart_new.apps.CartNewConfig'
 
 ]
 
