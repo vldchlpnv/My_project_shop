@@ -8,6 +8,6 @@ class Cart_Items(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f"{self.goods_in_cart.name} (x{self.quantity})"
+        return f"{self.quantity})"
 
 

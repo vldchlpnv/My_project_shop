@@ -7,7 +7,8 @@
         <p> {{item.goods_in_cart.slug}} - {{ item.quantity }} x {{item.goods_in_cart.price|floatformat:2}} =  </p>
 
         <form method="post" action="{% url 'cart_add' item.goods_in_cart.id %}">
-            <button type="submit" name="action" value="decrease"> Удалить </button>
+            <button type="submit" name="action" value="decrease"> Удалить один</button>
+            <button type="submit" name="action" value="decrease_all"> Удалить все</button>
             {% csrf_token %}
         </form>
     </li>

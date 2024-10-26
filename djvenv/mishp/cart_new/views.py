@@ -14,18 +14,7 @@ def cart_view(request):
     #quantity = list(item.quantity for item in cart_items) # количество каждого товара
     #price_in_cart = zip(in_cart, price, quantity)
 
-    return render(request, 'cart/cart_detail.html', {'cart_items': cart_items, 'total_price': total_price})#, 'price_in_cart':price_in_cart})
-
-#@login_required
-#def cart_add(request, goods_in_cart_id):
-
-    #product = get_object_or_404(InstrumentsCatalog, id=goods_in_cart_id)
-
-    #cart_item, created = Cart_Items.objects.get_or_create(user=request.user, goods_in_cart=product)
-    #if not created:
-    #    cart_item.quantity += 1
-    #    cart_item.save()
-    #return redirect('cart_view')
+    return render(request, 'cart/cart_detail.html', {'cart_items': cart_items, 'total_price': total_price})#, 'price_in_cart':price_in_cart}) # изменить редирект
 
 @login_required
 def cart_add(request, goods_in_cart_id):
@@ -52,6 +41,15 @@ def cart_add(request, goods_in_cart_id):
             if not created:
                 cart_item.quantity -= 1
                 cart_item.save()
+                if cart_item.quantity <= 0:
+                    #del_request = Cart_Items.objects.filter(id=goods_in_cart_id).delete() # разобраться почему не работает
+                    cart_item.delete()
+            return redirect('cart_view')
+
+        elif action=='decrease_all':
+            cart_item, created = Cart_Items.objects.get_or_create(user=request.user, goods_in_cart=product)
+            if cart_item.quantity > 0:
+                cart_item.delete()
             return redirect('cart_view')
     else:
         return render(request, 'cart/cart_detail.html')
