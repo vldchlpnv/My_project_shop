@@ -21,12 +21,6 @@
     <br><br>Количество:{{i.quantity}}
     <br><br>Цена:{{i.price}}
 
-    <form method="post" action="{% url 'cart_add' i.id %}">
-        {% csrf_token %}
-    <button type="submit" name="action" value="decrease">-</button>
-    <button type="submit" name="action" value="add">Добавить в корзину</button>
-    <button type="submit" name="action" value="increase">+</button>
-    </form>
     {% endfor %}
 
 

@@ -1,23 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Детали категорий</title>
-</head>
-<body>
+{% block title %}<title> Детали категорий </title>{% endblock title %}
 
-<header>
-    <h1>{{category_of_instr}}</h1>
-</header>
+{% block link %}
 
-<ul>
+{% if value == 'drums' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_drums.css' %}">
+
+{% elif value == 'keyboards' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_keyboards.css' %}">
+
+{% elif value == 'for-the-studio' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_for_the_studio.css' %}">
+
+{% elif value == 'guitars' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_guitars.css' %}">
+
+{% elif value == 'microphones' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_microphones.css' %}">
+
+{% elif value == 'switching' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_switching.css' %}">
+
+{% elif value == 'guitar-amps' %}
+    <link rel="stylesheet" href="{% static 'css_styles/css_for_catalog_guitar_amps.css' %}">
+{% endif %}
+
+{% endblock link %}
+
+{% block content %}
+
+
+    <h1 class="head_of_instruments">{{category_of_instr}}</h1>
+
+
+<ul class="list_of_instuments">
     {% for i in type_of_instr_in_category %}
-    <li>
-        <a href="{% url 'catalog:details' i.slug %}">{{i.goods}}</a>
+    <li >
+        <a style="color: white; text-decoration: none" href="{% url 'catalog:details' i.slug %}">{{i.goods}}</a>
     </li>
     {% endfor %}
 </ul>
-
-</body>
-</html>
+{% endblock content %}

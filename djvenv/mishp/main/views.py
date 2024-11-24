@@ -7,8 +7,8 @@ def main_page(request):# представление списка товаров 
     category = Category.objects.all()
     return render(request, 'main/main_page.html', {'category':category})
 
-def about(request):# представление для О нас --- Работает
-    return render(request, 'main/about_us.html')
+#def about(request):# представление для О нас --- Работает
+#    return render(request, 'main/about_us.html')
 
 
 

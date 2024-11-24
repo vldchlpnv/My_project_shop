@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About</title>
-</head>
-<body>
-<footer>
-    <p>
-        &copy;2024 My instrument music shop, LLC. All
-        rights reserved.
-    </p>
-</footer>
+{% extends 'base.html' %}
 
-<h1>Информация о компании</h1>
 
-<p><address>г.Москва ул.//////, дом 2</address></p>
-<p><address>Генеральный директор Чулпанов Владислав Николаевич</address></p>
-<p><address>Телефон для связи 8-937-771-55-18</address></p>
-<p><a href="mailto:vlad.chulpanov@icloud.com">vlad.chulpanov@icloud.com</a></p>
+{% block title %}<title>О нас</title>{% endblock title %}
 
-Наша компания знимается ----дописать----
+{% block content %}
+<div id="main" >
+    <div class="about_us">
 
 
 
+        <h1 class="info_possition">О компании</h1>
 
+        <div class='info_possition_3'>
 
-</body>
-</html>
+            <p class="interval">Наш музыкальный магазин создан человеком, для которого музыка – не просто увлечение,
+                а стиль жизни. Наша цель – сделать мир музыки ближе и доступнее каждому.
+                Мы верим, что любой, кто мечтает заниматься музыкой, должен иметь возможность воплотить свою мечту в реальность.</p>
+
+            <p class="interval">В нашем ассортименте – инструменты и аксессуары для музыкантов любого уровня:
+            от начинающих до профессионалов. Мы тщательно подбираем товары, чтобы обеспечить высокое качество по доступным ценам.</p>
+
+            <p class="interval">С музыкой начинается творчество, а с нами – ваш путь в этот удивительный мир.</p>
+        </div>
+
+        <div>
+            <ul class="about_us_2">
+                <li>Адрес: г.Москва ул.//////, дом 2</li>
+                <li>Генеральный директор: Чулпанов Владислав Николаевич</li>
+                <li>Телефон для связи:8-937-771-55-18</li>
+                <li>Email для связи: <a style="color: inherit" href="mailto:vlad.chulpanov@icloud.com">vlad.chulpanov@icloud.com</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+

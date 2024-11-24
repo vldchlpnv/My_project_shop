@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Главная страница</title>{% endblock title %}
+
+    {% block link %}<link rel="stylesheet"  href="{% static 'css_styles/css_for_main_page.css' %}">{% endblock link %}
+
+</head>
+
+<body>
+
+
+<div id='header' class="position-right">
+<ul>
+    <li class="header-li-poisition"><a class="settings-h" href="">Корзина</a></li>
+    <li class="header-li-poisition"><a class="settings-h" href="">Мои заказы</a></li>
+    <li class="header-li-poisition"><a class="settings-h" href="">Избранное</a></li>
+
+    {% if user.is_authenticated %}
+        <li class="settings-h header-li-poisition">Привет {{ user.username }}!</li>
+        <li class="header-li-poisition">
+            <form action="{% url 'logout' %}" method="post" style="display: inline;"> <!--можно применять стили к формам что бы Выход не спусуакадслся вниз применил display: inline-->
+                {% csrf_token %}
+                <a class="settings-h" href="#" onclick="this.closest('form').submit();">Выход</a>
+            </form>
+        </li>
+    {% else %}
+        <li class="header-li-poisition"><a class="settings-h" href="{% url 'login' %}">Вход</a></li>
+    {% endif %}
+</ul>
+</div>
+
+<div>
+    {% block content %}
+
+    {% endblock content %}
+</div>
+
+<div id="footer">
+    <ul>
+    <li class="footer-li-poisition"><a class="settings-f" href="{% url 'main:delivery_and_payment' %}">Заказ и оплата</a></li>
+    <li class="footer-li-poisition"><a class="settings-f" href =''>Доставка</a></li>
+    <li class="footer-li-poisition"><a class="settings-f" href="{% url 'main:about' %}">Наши контакты</a></li>
+    </ul>
+    <p class="position_right">&copy;2024 My instrument music shop, LLC. All
+        rights reserved.</p>
+</div>
+
+
+</body>
+</html>

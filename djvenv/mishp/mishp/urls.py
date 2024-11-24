@@ -23,8 +23,7 @@ urlpatterns = [
     path('', include('catalog.urls', namespace='catalog')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('accounts.urls')),
-    path('api/', include('test_api.urls')),
-    path('cart/', include('cart_new.urls'))
+    path('api/', include('test_api.urls'))
 ]
 #accounts/login/ [name='login']
 #accounts/logout/ [name='logout']

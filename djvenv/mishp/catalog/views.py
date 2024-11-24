@@ -10,10 +10,11 @@ def details_of_category(request, slug):
 
     category_of_instr = get_object_or_404(Category, slug=slug) # этим запросом получим категорию инструменов ударные гитары клавиши или прочее, в том числе
     # это будет загловок для шаблона detail_of_category
+    value = slug # переменная для того что бы подключались фоны в каталоге
 
     type_of_instr_in_category = category_of_instr.showcaseofinstrumentst_set.filter(type_of_instruments_showcase_id=category_of_instr) # типы инструментов в категории бас, акустика, электро и тд
 
-    return render(request, 'catalog/details_of_category.html', {'type_of_instr_in_category':type_of_instr_in_category, 'category_of_instr':category_of_instr})
+    return render(request, 'catalog/details_of_category.html', {'type_of_instr_in_category':type_of_instr_in_category, 'category_of_instr':category_of_instr, 'value':value})
 
 
 def details(request, slug):

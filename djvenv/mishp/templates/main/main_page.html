@@ -1,51 +1,14 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-    <link rel="stylesheet"  href="{% static 'css_styles/css_for_main_page.css' %}">
-</head>
-
-<body>
 
 
-<div id='header' class="position-right">
-<ul>
-
-        <li><a class="settings-h" href="{% url 'cart_view' %}">Корзина</a></li>
-        <li><a class="settings-h" href="">Мои заказы</a></li>
-        <li><a class="settings-h" href="">Избранное</a></li>
-
-    {% if user.is_authenticated %}
-    Привет {{ user.username }}!
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <a href="#" onclick="parentNode.submit();">Выход</a>
-    </form>
-
-    {% else %}
-         <li><a class="settings-h" href="{% url 'login' %}">Вход</a></li>
-
-    {% endif %}
-        </ul>
-</div>
-
+{% block content %}
 <div id="main">
     <ul>
         {% for i in category %}
-        <li><a href="{% url 'catalog:details_of_category' i.slug %}" class="color-main">{{i.type_of_instruments}}</a></li>
+        <li class="main-li-poisition"><a href="{% url 'catalog:details_of_category' i.slug %}" class="color-main">{{i.type_of_instruments}}</a></li>
         {% endfor %}
     </ul>
 </div>
 
-<div id="footer">
-    <ul>
-    <li><a class="settings-f" href="">Заказ и оплата</a></li>
-    <li><a class="settings-f" href =''>Доставка</a></li>
-    <li><a class="settings-f" href="{% url 'main:about' %}">Наши контакты</a></li>
-    </ul>
-</div>
-
-</body>
-</html>
+{% endblock content %}
